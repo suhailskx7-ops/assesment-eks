@@ -1,0 +1,24 @@
+# Terraform and local files
+# .gitignore
+
+# Terraform local files
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+
+# Local override files
+*.tfvars
+*.tfstate*
+*.backup
+
+# Sensitive files
+*.pem
+*.key
+
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
