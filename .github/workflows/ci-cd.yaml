@@ -12,22 +12,25 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }} 
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v4
+      - name: Set up kubectl for EKS
+        uses: aws-actions/eks-setup-kubectl@v2
         with:
-          version: 'latest'
+          version: latest
 
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
+
+      - name: Verify cluster access
+        run: kubectl get nodes
 
       - name: Deploy Kubernetes manifests
         run: kubectl apply -f k8s/
