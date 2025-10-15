@@ -21,11 +21,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Install kubectl
+      - name: Install kubectl (latest version)
         run: |
-          curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.29.0/2024-04-19/bin/linux/amd64/kubectl
-          chmod +x ./kubectl
-          sudo mv ./kubectl /usr/local/bin
+          curl -Lo kubectl https://s3.us-west-2.amazonaws.com/amazon-eks/1.29.0/2024-04-19/bin/linux/amd64/kubectl
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/kubectl
+          kubectl version --client
 
       - name: Update kubeconfig
         run: aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
