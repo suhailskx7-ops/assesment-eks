@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: arn:aws:iam::455225680207:role/hello-web-eks-cluster-arn:aws:eks:us-east-1:455225680207:nodegroup/hello-web-eks/default-20251015203719754200000005/1eccf4cb-b62f-bc74-693d-3fafb6024a05
+    - rolearn: arn:aws:eks:us-east-1:455225680207:nodegroup/hello-web-eks/default-20251015203719754200000005/1eccf4cb-b62f-bc74-693d-3fafb6024a05
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
