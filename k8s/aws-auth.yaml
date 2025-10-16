@@ -13,5 +13,5 @@ data:
   mapUsers: |
     - userarn: arn:aws:iam::455225680207:root
       username: admin
-      groups:
+      groups: 
         - system:masters
